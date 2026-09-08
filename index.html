@@ -494,11 +494,11 @@
     // 5. PERBAIKAN FITUR BAGIKAN UNDANGAN (+ FALLBACK WHATSAPP)
     function shareUndangan() {
       const pageUrl = window.location.href;
-      const shareText = `Ada pesan romantis spesial buat kamu nih! ❤️ Silakan buka link ini:\n${pageUrl}`;
+      const shareText = `Ada pesan romantis spesial agar kalian tau!  Silakan buka link ini:\n${pageUrl}`;
 
       if (navigator.share) {
         navigator.share({
-          title: 'Undangan Spesial Untuk Yaya',
+          title: 'Undangan Spesial Untuk Kalian',
           text: shareText,
           url: pageUrl
         }).catch(() => {
