@@ -168,11 +168,14 @@
       z-index: 10;
     }
 
+    /* UKURAN FOTO PERTAMA DILUASIN & DIBUAT PAS (DIKECILKAN DARI 100%) */
     .single-photo-item {
       background: rgba(0, 0, 0, 0.3);
       border-radius: 15px;
-      padding: 12px;
+      padding: 10px;
       border: 1px solid rgba(239, 68, 68, 0.3);
+      max-width: 280px; /* Membatasi lebar foto utama */
+      margin: 0 auto;
     }
 
     .single-photo-item img {
@@ -183,17 +186,18 @@
       display: block;
     }
 
+    /* GALERI FOTO DIBUAT DUA KOLOM DENGAN UKURAN LEBIH COMPACT */
     .photo-list {
-      display: flex;
-      flex-direction: column;
-      gap: 15px;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr); /* Mengubah tampilan stack ke 2 kolom grid */
+      gap: 12px;
       margin-top: 15px;
     }
 
     .photo-item {
       background: rgba(0, 0, 0, 0.3);
       border-radius: 15px;
-      padding: 12px;
+      padding: 8px;
       border: 1px solid rgba(239, 68, 68, 0.3);
     }
 
