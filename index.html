@@ -139,7 +139,6 @@
       box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
     }
 
-    /* STYLE FOTO UTAMA & GALERI FOTO */
     .single-photo-item {
       background: rgba(0, 0, 0, 0.3);
       border-radius: 15px;
@@ -196,6 +195,7 @@
       margin-top: 10px;
     }
 
+    /* STYLE QR CODE TERPERBARUI */
     .qr-card-wrapper {
       display: flex;
       flex-direction: column;
@@ -217,6 +217,7 @@
       align-items: center;
       box-shadow: 0 0 25px rgba(225, 29, 72, 0.5);
       margin: 15px 0;
+      cursor: pointer;
     }
 
     .qr-image-wrapper {
@@ -252,6 +253,7 @@
       align-items: center;
       font-size: 18px;
       border: 3px solid #ffffff;
+      pointer-events: none;
     }
 
     .btn-share {
@@ -265,6 +267,11 @@
       cursor: pointer;
       margin-top: 10px;
       box-shadow: 0 4px 15px rgba(220, 38, 38, 0.5);
+      transition: transform 0.2s, background 0.3s;
+    }
+
+    .btn-share:active {
+      transform: scale(0.95);
     }
 
     @keyframes fadeIn {
@@ -372,15 +379,15 @@
         </div>
       </div>
 
-      <!-- 6. QR CODE -->
+      <!-- 6. QR CODE INTERAKTIF -->
       <div class="card">
         <h3 style="color: #ffcc00; font-size: 18px;">Undangan Spesial 💌</h3>
-        <p style="font-size: 12px; margin-top: 5px; color: #fca5a5;">Scan QR Code di bawah ini!</p>
+        <p style="font-size: 12px; margin-top: 5px; color: #fca5a5;">Scan QR Code di bawah ini untuk membuka web ini!</p>
         
         <div class="qr-card-wrapper">
-          <div class="qr-box-modern">
+          <div class="qr-box-modern" onclick="openWebUrl()">
             <div class="qr-image-wrapper">
-              <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https://instagram.com" alt="QR Code">
+              <img id="qr-img" src="" alt="QR Code Website">
               <div class="qr-center-heart">❤️</div>
             </div>
           </div>
@@ -396,7 +403,20 @@
   <script>
     const music = document.getElementById('bg-music');
 
-    // 1. GENERATE PARTIKEL HATI JATUH
+    // 1. OTOMATIS GENERATE QR CODE SESUAI DOMAIN SEKARANG
+    document.addEventListener("DOMContentLoaded", function() {
+      const currentUrl = encodeURIComponent(window.location.href);
+      const qrImg = document.getElementById('qr-img');
+      if (qrImg) {
+        qrImg.src = `https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=${currentUrl}`;
+      }
+    });
+
+    function openWebUrl() {
+      window.open(window.location.href, '_blank');
+    }
+
+    // 2. GENERATE PARTIKEL HATI JATUH
     function createHeart() {
       const heart = document.createElement('div');
       heart.classList.add('heart-particle');
@@ -410,12 +430,11 @@
     }
     setInterval(createHeart, 300);
 
-    // 2. FUNGSI PEMUTAR LAGU SAAT KLIK KOTAK PESAN
+    // 3. FUNGSI PEMUTAR LAGU SAAT KLIK KOTAK PESAN
     function startIntro() {
       const intro = document.getElementById('intro-overlay');
       const gameScreen = document.getElementById('game-screen');
 
-      // Putar musik langsung secara eksplisit
       if (music) {
         music.play().then(() => {
           console.log("Lagu berhasil diputar!");
@@ -431,9 +450,8 @@
       }, 800);
     }
 
-    // 3. LOGIKA TRANSISI GAME & BACKUP AUTO-PLAY LAGU
+    // 4. LOGIKA TRANSISI GAME & BACKUP AUTO-PLAY LAGU
     function tryGame(btn, isCorrect) {
-      // Pemicu cadangan jika di klik pertama lagu terhalang sistem keamanan HP/Browser
       if (music && music.paused) {
         music.play().catch(() => {});
       }
@@ -473,17 +491,23 @@
       }
     }
 
-    // 4. BAGIKAN UNDANGAN
+    // 5. PERBAIKAN FITUR BAGIKAN UNDANGAN (+ FALLBACK WHATSAPP)
     function shareUndangan() {
+      const pageUrl = window.location.href;
+      const shareText = `Ada pesan romantis spesial buat kamu nih! ❤️ Silakan buka link ini:\n${pageUrl}`;
+
       if (navigator.share) {
         navigator.share({
-          title: 'Undangan Spesial',
-          text: 'Ada pesan khusus buat kamu! ❤️',
-          url: window.location.href
+          title: 'Undangan Spesial Untuk Yaya',
+          text: shareText,
+          url: pageUrl
+        }).catch(() => {
+          // Jika user membatalkan share, abaikan error
         });
       } else {
-        navigator.clipboard.writeText(window.location.href);
-        alert('Link undangan berhasil disalin!');
+        // Fallback otomatis jika browser HP tidak mendukung Web Share API: Buka WhatsApp langsung
+        const waUrl = `https://wa.me/?text=${encodeURIComponent(shareText)}`;
+        window.open(waUrl, '_blank');
       }
     }
   </script>
