@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Special for You </title>
+  <title>Our Special Story ❤️</title>
   <style>
     * { 
       box-sizing: border-box; 
@@ -48,12 +48,8 @@
         transform: translateY(105vh) scale(0.5) rotate(0deg);
         opacity: 0;
       }
-      20% {
-        opacity: 0.6;
-      }
-      80% {
-        opacity: 0.6;
-      }
+      20% { opacity: 0.6; }
+      80% { opacity: 0.6; }
       100% {
         transform: translateY(-10vh) scale(1.3) rotate(360deg);
         opacity: 0;
@@ -61,7 +57,7 @@
     }
 
     .container { 
-      max-width: 420px; 
+      max-width: 440px; 
       width: 100%; 
       z-index: 2;
       position: relative;
@@ -147,7 +143,7 @@
     .card {
       background: rgba(255, 255, 255, 0.06);
       border-radius: 20px;
-      padding: 20px;
+      padding: 22px 18px;
       margin-bottom: 25px;
       text-align: center;
       border: 1px solid rgba(239, 68, 68, 0.25);
@@ -155,7 +151,6 @@
       backdrop-filter: blur(5px);
     }
 
-    /* ANIMASI FOTO KETIKA DIKLIK (ZOOM & RAISE) */
     .interactive-photo {
       cursor: pointer;
       transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s ease;
@@ -168,13 +163,12 @@
       z-index: 10;
     }
 
-    /* UKURAN FOTO PERTAMA DILUASIN & DIBUAT PAS (DIKECILKAN DARI 100%) */
     .single-photo-item {
       background: rgba(0, 0, 0, 0.3);
       border-radius: 15px;
       padding: 10px;
       border: 1px solid rgba(239, 68, 68, 0.3);
-      max-width: 280px; /* Membatasi lebar foto utama */
+      max-width: 280px;
       margin: 0 auto;
     }
 
@@ -186,10 +180,9 @@
       display: block;
     }
 
-    /* GALERI FOTO DIBUAT DUA KOLOM DENGAN UKURAN LEBIH COMPACT */
     .photo-list {
       display: grid;
-      grid-template-columns: repeat(2, 1fr); /* Mengubah tampilan stack ke 2 kolom grid */
+      grid-template-columns: repeat(2, 1fr);
       gap: 12px;
       margin-top: 15px;
     }
@@ -209,7 +202,6 @@
       display: block;
     }
 
-    /* BURST EMOTICON ANIMATION */
     .burst-emoji {
       position: fixed;
       pointer-events: none;
@@ -242,6 +234,203 @@
       margin: 10px 0;
     }
 
+    /* CATATAN KEBERSAMAAN */
+    .stat-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+      margin-top: 15px;
+    }
+
+    .stat-card {
+      background: rgba(0, 0, 0, 0.35);
+      border: 1px solid rgba(239, 68, 68, 0.3);
+      border-radius: 14px;
+      padding: 12px 10px;
+      text-align: center;
+    }
+
+    .stat-icon {
+      font-size: 22px;
+      margin-bottom: 4px;
+    }
+
+    .stat-title {
+      font-size: 12px;
+      font-weight: bold;
+      color: #ffcc00;
+    }
+
+    .stat-desc {
+      font-size: 11px;
+      color: #fca5a5;
+      margin-top: 2px;
+    }
+
+    /* TIMELINE */
+    .timeline {
+      position: relative;
+      padding-left: 20px;
+      margin-top: 15px;
+      text-align: left;
+    }
+
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 5px;
+      top: 5px;
+      bottom: 5px;
+      width: 2px;
+      background: rgba(239, 68, 68, 0.5);
+    }
+
+    .timeline-item {
+      position: relative;
+      margin-bottom: 20px;
+      padding-left: 15px;
+    }
+
+    .timeline-item::before {
+      content: '❤️';
+      position: absolute;
+      left: -20px;
+      top: 0;
+      font-size: 12px;
+    }
+
+    .timeline-date {
+      font-size: 11px;
+      color: #ffcc00;
+      font-weight: bold;
+    }
+
+    .timeline-title {
+      font-size: 14px;
+      font-weight: bold;
+      margin: 2px 0;
+    }
+
+    .timeline-desc {
+      font-size: 12px;
+      color: #fca5a5;
+      line-height: 1.4;
+    }
+
+    /* SOUNDTRACK KITA */
+    .playlist-list {
+      text-align: left;
+      margin-top: 15px;
+    }
+
+    .song-card {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      background: rgba(0, 0, 0, 0.3);
+      border: 1px solid rgba(239, 68, 68, 0.25);
+      border-radius: 12px;
+      padding: 10px 12px;
+      margin-bottom: 10px;
+    }
+
+    .song-icon {
+      background: #dc2626;
+      color: #fff;
+      border-radius: 50%;
+      width: 36px;
+      height: 36px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 16px;
+      flex-shrink: 0;
+      box-shadow: 0 0 10px rgba(220, 38, 38, 0.5);
+      cursor: pointer;
+      user-select: none;
+      transition: transform 0.2s, background 0.3s;
+    }
+
+    .song-icon:active {
+      transform: scale(0.9);
+    }
+
+    /* ANIMASI TOMBOL SAAT LAGU SOUNDTRACK BERJALAN */
+    .song-icon.playing {
+      background: #22c55e !important;
+      box-shadow: 0 0 15px rgba(34, 197, 94, 0.8) !important;
+      animation: pulseIcon 1.2s infinite ease-in-out;
+    }
+
+    @keyframes pulseIcon {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.15); }
+      100% { transform: scale(1); }
+    }
+
+    .song-info h4 {
+      font-size: 13px;
+      color: #ffffff;
+      margin-bottom: 2px;
+    }
+
+    .song-info p {
+      font-size: 11px;
+      color: #fca5a5;
+    }
+
+    /* DIGITAL LETTER BOX DENGAN FORMSPREE */
+    .letter-box {
+      background: rgba(0,0,0,0.3);
+      border-radius: 12px;
+      padding: 15px;
+      margin-top: 10px;
+      border: 1px dashed rgba(239, 68, 68, 0.5);
+    }
+
+    .letter-input-name {
+      width: 100%;
+      height: 38px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(239, 68, 68, 0.3);
+      border-radius: 8px;
+      color: #fff;
+      padding: 8px 10px;
+      font-size: 13px;
+      outline: none;
+      margin-bottom: 8px;
+    }
+
+    .letter-input {
+      width: 100%;
+      height: 80px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(239, 68, 68, 0.3);
+      border-radius: 8px;
+      color: #fff;
+      padding: 10px;
+      font-size: 13px;
+      resize: none;
+      outline: none;
+    }
+
+    .letter-btn {
+      background: #dc2626;
+      color: #fff;
+      border: none;
+      padding: 10px 20px;
+      font-size: 12px;
+      font-weight: bold;
+      border-radius: 20px;
+      cursor: pointer;
+      margin-top: 10px;
+      transition: background 0.3s;
+    }
+
+    .letter-btn:hover {
+      background: #b91c1c;
+    }
+
     .video-wrapper video {
       width: 100%;
       border-radius: 12px;
@@ -249,7 +438,6 @@
       margin-top: 10px;
     }
 
-    /* STYLE QR CODE TERPERBARUI */
     .qr-card-wrapper {
       display: flex;
       flex-direction: column;
@@ -260,12 +448,12 @@
 
     .qr-box-modern {
       position: relative;
-      width: 200px;
-      height: 200px;
+      width: 180px;
+      height: 180px;
       background: rgba(255, 255, 255, 0.05);
       border: 2px solid rgba(239, 68, 68, 0.8);
-      border-radius: 24px;
-      padding: 15px;
+      border-radius: 20px;
+      padding: 12px;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -279,8 +467,8 @@
       width: 100%;
       height: 100%;
       background: #ffffff;
-      border-radius: 16px;
-      padding: 10px;
+      border-radius: 14px;
+      padding: 8px;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -299,14 +487,14 @@
       transform: translate(-50%, -50%);
       background: #dc2626;
       color: #ffffff;
-      width: 36px;
-      height: 36px;
+      width: 32px;
+      height: 32px;
       border-radius: 50%;
       display: flex;
       justify-content: center;
       align-items: center;
-      font-size: 18px;
-      border: 3px solid #ffffff;
+      font-size: 16px;
+      border: 2px solid #ffffff;
       pointer-events: none;
     }
 
@@ -324,9 +512,7 @@
       transition: transform 0.2s, background 0.3s;
     }
 
-    .btn-share:active {
-      transform: scale(0.95);
-    }
+    .btn-share:active { transform: scale(0.95); }
 
     @keyframes fadeIn {
       from { opacity: 0; transform: translateY(20px); }
@@ -336,29 +522,29 @@
 </head>
 <body>
 
-  <!-- BACKGROUND EFEK LOVE BERGERAK -->
+  <!-- BACKGROUND ANIMASI LOVE -->
   <div class="bg-animation" id="bg-animation"></div>
 
-  <!-- Musik Background -->
+  <!-- Musik Background Utama -->
   <audio id="bg-music" loop preload="auto">
     <source src="myhrt.mp3" type="audio/mpeg">
   </audio>
 
-  <!-- OVERLAY INTRO SEBELUM GAME -->
+  <!-- OVERLAY INTRO -->
   <div id="intro-overlay" class="full-overlay" onclick="startIntro()">
     <div class="overlay-flower-big">💖</div>
     <div class="overlay-text">
-      <p style="font-size: 16px;">Ada pesan untukmu ❤️</p>
-      <p style="font-size: 12px; margin-top: 5px; color: #fff;">(Klik di sini untuk membuka pesan)</p>
+      <p style="font-size: 16px;">Cerita Perjalanan Kita ❤️</p>
+      <p style="font-size: 12px; margin-top: 5px; color: #fff;">(Klik di sini untuk membuka)</p>
     </div>
   </div>
 
-  <!-- OVERLAY FULL BUNGAKU SETELAH GAME -->
+  <!-- OVERLAY TRANSISI GAME -->
   <div id="transition-overlay" class="full-overlay" style="display: none; opacity: 0;">
     <div class="overlay-flower-big">💐</div>
     <div class="overlay-text">
       <p style="font-size: 18px;">BUKET DITEMUKAN! 🎉</p>
-      <p style="font-size: 13px; margin-top: 5px; color: #fff;">Membuka kejutan untukmu...</p>
+      <p style="font-size: 13px; margin-top: 5px; color: #fff;">Membuka kenangan berdua...</p>
     </div>
   </div>
 
@@ -366,9 +552,9 @@
 
     <!-- GAME SCREEN -->
     <div id="game-screen">
-      <h2 style="color: #ffcc00;">❤️ TUGAS PERTAMA 🌹</h2>
+      <h2 style="color: #ffcc00;">❤️ SHARING OUR MOMENT 🌹</h2>
       <p style="margin-top: 10px; font-size: 14px; line-height: 1.5;">
-        Cari Love yang membawa buket bunga untuk membuka pesan kejutannya!
+        Cari Love yang membawa buket bunga untuk membuka kenangan berdua!
       </p>
       
       <div class="spidey-grid">
@@ -386,61 +572,175 @@
     <!-- HALAMAN UTAMA -->
     <div id="main-content">
       
-      <!-- Card Header -->
+      <!-- 1. Header Card -->
       <div class="card">
-        <p style="color: #ffcc00; font-size: 12px; letter-spacing: 2px;">UNTUK YANG TERSAYANG</p>
-        <h1 style="margin: 10px 0; font-size: 28px;">Raisya ❤️</h1>
+        <p style="color: #ffcc00; font-size: 12px; letter-spacing: 2px;">Kisah Perjalanan Bersama</p>
+        <h1 style="margin: 10px 0; font-size: 26px;">Kamu & Aku ❤️</h1>
       </div>
 
-      <!-- 1. FOTO PERTAMA -->
+      <!-- 2. Foto Utama Berdua -->
       <div class="card">
         <div class="single-photo-item interactive-photo" onclick="handlePhotoClick(event, this)">
-          <img src="yaya.jpg" alt="Foto Utama">
+          <img src="kita.jpg" alt="Foto Berdua">
         </div>
       </div>
 
-      <!-- 2. KATA-KATA PERTAMA -->
+      <!-- 3. Catatan Kebersamaan -->
       <div class="card">
-        <h3 style="color: #ffcc00; font-size: 18px; margin-bottom: 10px;">Pesan Pembuka 💌</h3>
+        <h3 style="color: #ffcc00; font-size: 16px;">Catatan Kebersamaan 📖</h3>
+        <p style="font-size: 11px; color: #fca5a5; margin-top: 2px;">Hal-hal kecil yang selalu terasa hangat berdua</p>
+        
+        <div class="stat-grid">
+          <div class="stat-card">
+            <div class="stat-icon">☕</div>
+            <div class="stat-title">Obrolan Panjang</div>
+            <div class="stat-desc">Ratusan jam cerita random tanpa pernah bosan</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon">🛵</div>
+            <div class="stat-title">Keliling Kota</div>
+            <div class="stat-desc">Menikmati sore dan jalanan bareng</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon">📸</div>
+            <div class="stat-title">Galeri Foto</div>
+            <div class="stat-desc">Momen senyum manis yang selalu tersimpan</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon">🤍</div>
+            <div class="stat-title">Saling Meredam</div>
+            <div class="stat-desc">Belajar makin dewasa bersama</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 4. Pesan Pembuka -->
+      <div class="card">
+        <h3 style="color: #ffcc00; font-size: 18px; margin-bottom: 10px;">Awal Perjalanan 💌</h3>
         <div class="quote-box">
-        Hai! Kenalin, ini Yaya. Cantik banget, kan? Senyumnya selalu jadi alasan aku tersenyum tiap hari. Makasih ya cantik udah hadir dan bikin hidup aku makin berwarna!
+          Setiap momen yang kita lalui berdua selalu punya cerita dan kehangatannya sendiri. Terima kasih ya sudah berjuang dan selalu melangkah bersama sejauh ini!
         </div>
       </div>
 
-      <!-- 3. FOTO BANYAK (GALERI) -->
+      <!-- 5. Memory Timeline -->
       <div class="card">
-        <h3 style="color: #ffcc00; font-size: 18px;">Galeri Kenangan Kita 📸</h3>
-        <p style="font-size: 11px; color: #fca5a5; margin-top: 3px;">(Klik foto untuk memperbesar ❤️)</p>
+        <h3 style="color: #ffcc00; font-size: 18px; margin-bottom: 5px;">Jejak Kenangan Kita 📍</h3>
+        <p style="font-size: 11px; color: #fca5a5;">Momen-momen penting yang pernah kita lewati</p>
+        
+        <div class="timeline">
+          <div class="timeline-item">
+            <div class="timeline-date">Awal Pertemuan</div>
+            <div class="timeline-title">Pertama Kali Bersama</div>
+            <div class="timeline-desc">Momen kecil yang menjadi awal dari cerita panjang ini. Hari di mana semuanya terasa begitu canggung tapi manis.</div>
+          </div>
+          
+          <div class="timeline-item">
+            <div class="timeline-date">Perjalanan Pertama</div>
+            <div class="timeline-title">Jalan-Jalan Berdua</div>
+            <div class="timeline-desc">Saling berbagi cerita sepanjang jalan, tertawa bareng, dan makin mengenal satu sama lain.</div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-date">Mewalaki Tantangan</div>
+            <div class="timeline-title">Saling Meredam & Berjuang</div>
+            <div class="timeline-desc">Bukan cuma momen manis, kita juga belajar makin dewasa, saling mengerti, dan terus saling menguatkan.</div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-date">Hari Ini & Seterusnya</div>
+            <div class="timeline-title">Terus Bersama</div>
+            <div class="timeline-desc">Hari ini, besok, dan seterusnya, semoga kita selalu melangkah bergandengan tangan.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 6. Galeri Foto Berdua -->
+      <div class="card">
+        <h3 style="color: #ffcc00; font-size: 18px;">Galeri Kenangan 📸</h3>
+        <p style="font-size: 11px; color: #fca5a5; margin-top: 3px;">(Klik foto untuk efek kejutan ❤️)</p>
         <div class="photo-list">
-          <div class="photo-item interactive-photo" onclick="handlePhotoClick(event, this)"><img src="yaya 2.jpg" alt="Foto 1"></div>
-          <div class="photo-item interactive-photo" onclick="handlePhotoClick(event, this)"><img src="yaya 3.jpg" alt="Foto 2"></div>
-          <div class="photo-item interactive-photo" onclick="handlePhotoClick(event, this)"><img src="yaya 4.jpg" alt="Foto 3"></div>
-          <div class="photo-item interactive-photo" onclick="handlePhotoClick(event, this)"><img src="yaya.jpg" alt="Foto 4"></div>
+          <div class="photo-item interactive-photo" onclick="handlePhotoClick(event, this)"><img src="kita1.jpg" alt="Foto 1"></div>
+          <div class="photo-item interactive-photo" onclick="handlePhotoClick(event, this)"><img src="kita2.jpg" alt="Foto 2"></div>
+          <div class="photo-item interactive-photo" onclick="handlePhotoClick(event, this)"><img src="kita3.jpg" alt="Foto 3"></div>
+          <div class="photo-item interactive-photo" onclick="handlePhotoClick(event, this)"><img src="kita4.jpg" alt="Foto 4"></div>
         </div>
       </div>
 
-      <!-- 4. KATA-KATA KEDUA -->
+      <!-- 7. SOUNDTRACK KITA (DENGAN PEMUTAR INTEGRASI) -->
       <div class="card">
-        <h3 style="color: #ffcc00; font-size: 18px; margin-bottom: 10px;">Ungkapan Hati ❤️</h3>
+        <h3 style="color: #ffcc00; font-size: 18px;">Soundtrack Kita 🎵</h3>
+        <p style="font-size: 11px; color: #fca5a5; margin-top: 3px;">Lagu-lagu yang selalu bikin ingat kamu</p>
+        
+        <div class="playlist-list">
+          <!-- Lagu 1 -->
+          <div class="song-card">
+            <div class="song-icon" onclick="playCustomSong(1)" id="icon-song-1">▶</div>
+            <div class="song-info">
+              <h4>Kita Usahakan Rumah Itu</h4>
+              <p>Sal Priadi — Cerita impian dan masa depan berdua</p>
+            </div>
+            <audio id="audio-song-1" src="lagu1.mp3" preload="none"></audio>
+          </div>
+
+          <!-- Lagu 2 -->
+          <div class="song-card">
+            <div class="song-icon" onclick="playCustomSong(2)" id="icon-song-2">▶</div>
+            <div class="song-info">
+              <h4>Ceritanya Jatuh Cinta</h4>
+              <p>Jeje — Momen manis rasa bahagia bersamamu</p>
+            </div>
+            <audio id="audio-song-2" src="lagu2.mp3" preload="none"></audio>
+          </div>
+
+          <!-- Lagu 3 -->
+          <div class="song-card">
+            <div class="song-icon" onclick="playCustomSong(3)" id="icon-song-3">▶</div>
+            <div class="song-info">
+              <h4>About You</h4>
+              <p>The 1975 — Karena segalanya selalu teringat kamu</p>
+            </div>
+            <audio id="audio-song-3" src="lagu3.mp3" preload="none"></audio>
+          </div>
+        </div>
+      </div>
+
+      <!-- 8. Harapan Bersama -->
+      <div class="card">
+        <h3 style="color: #ffcc00; font-size: 18px; margin-bottom: 10px;">Ungkapan Hati ✨</h3>
         <div class="quote-box">
-          "Aku mungkin nggak selalu bisa nyusun kata-kata romantis tiap hari. Tapi lewat setiap foto di atas, aku harap kamu tahu kalau setiap momen sama kamu itu selalu jadi favorit aku. Makasih udah selalu ada ya!"
+          "Semoga di setiap langkah ke depan, kita bisa terus saling melengkapi, saling mendoakan, dan selalu menjadi tempat pulang terbaik satu sama lain."
         </div>
       </div>
 
-      <!-- 5. VIDEO KENANGAN -->
+      <!-- 9. Video Momen -->
       <div class="card">
-        <h3 style="color: #ffcc00; font-size: 18px; margin-bottom: 10px;">Video Spesial 🎬</h3>
+        <h3 style="color: #ffcc00; font-size: 18px; margin-bottom: 10px;">Video Kenangan 🎬</h3>
         <div class="video-wrapper">
           <video id="my-video" controls poster="img/thumbnail-video.jpg">
-            <source src="yaya5.mp4" type="video/mp4">
+            <source src="video-kita.mp4" type="video/mp4">
           </video>
         </div>
       </div>
 
-      <!-- 6. QR CODE INTERAKTIF -->
+      <!-- 10. KOTAK PESAN DENGAN NOTIFIKASI KE EMAIL (FORMSPREE) -->
       <div class="card">
-        <h3 style="color: #ffcc00; font-size: 18px;">Undangan Spesial 💌</h3>
-        <p style="font-size: 12px; margin-top: 5px; color: #fca5a5;">Scan QR Code di bawah ini untuk membuka web ini!</p>
+        <h3 style="color: #ffcc00; font-size: 18px;">Kirim Pesan Rahasia 💌</h3>
+        <p style="font-size: 11px; color: #fca5a5; margin-top: 3px;">Pesan yang diketik di sini akan terkirim langsung ke emailku!</p>
+        
+        <div class="letter-box">
+          <form id="contact-form" action="https://formspree.io/f/mbgjqape" method="POST">
+            <input type="text" name="Nama Pengirim" class="letter-input-name" placeholder="Nama / Panggilanmu..." required>
+            <textarea name="Pesan Rahasia" class="letter-input" placeholder="Tuliskan pesan atau ucapan manis di sini..." required></textarea>
+            <button type="submit" id="submit-btn" class="letter-btn">Kirim Pesan ❤️</button>
+          </form>
+          <p id="form-status" style="font-size: 12px; margin-top: 8px; font-weight: bold; display: none;"></p>
+        </div>
+      </div>
+
+      <!-- 11. QR Code & Bagikan -->
+      <div class="card">
+        <h3 style="color: #ffcc00; font-size: 18px;">Simpan Kenangan Ini 🔗</h3>
+        <p style="font-size: 12px; margin-top: 5px; color: #fca5a5;">Scan QR Code ini untuk melihat halaman kita!</p>
         
         <div class="qr-card-wrapper">
           <div class="qr-box-modern" onclick="openWebUrl()">
@@ -451,7 +751,7 @@
           </div>
         </div>
 
-        <button class="btn-share" onclick="shareUndangan()">Bagikan Undangan 🚀</button>
+        <button class="btn-share" onclick="shareUndangan()">Bagikan Momen Ini 🚀</button>
       </div>
 
     </div>
@@ -462,7 +762,7 @@
     const music = document.getElementById('bg-music');
     const video = document.getElementById('my-video');
 
-    // 1. ANIMAISI BACKGROUND LOVE BERGERAK DI BELAKANG
+    // 1. ANIMASI BACKGROUND LOVE BERGERAK
     function initBackgroundHearts() {
       const bgContainer = document.getElementById('bg-animation');
       const heartSymbols = ['❤️', '💖', '💕', '💗', '🌹'];
@@ -482,16 +782,13 @@
     }
     initBackgroundHearts();
 
-    // 2. INTERAKSI FOTO (ZOOM & BURST EMOJI BUNGALOVE)
+    // 2. INTERAKSI FOTO
     function handlePhotoClick(event, element) {
-      // Toggle zoom kelas
       element.classList.toggle('zoomed');
 
-      // Ambil posisi sentuhan / klik
       const x = event.clientX || (event.touches && event.touches[0].clientX);
       const y = event.clientY || (event.touches && event.touches[0].clientY);
 
-      // Munculkan kumpulan emot bunga dan love
       const emojis = ['💖', '🌸', '🌹', '💐', '✨', '❤️', '💕'];
       const particleCount = 12;
 
@@ -514,34 +811,97 @@
 
         document.body.appendChild(emojiEl);
 
-        setTimeout(() => {
-          emojiEl.remove();
-        }, 1200);
+        setTimeout(() => { emojiEl.remove(); }, 1200);
       }
     }
 
-    // 3. ATUR INTERAKSI VIDEO & LAGU
+    // 3. FUNGSI PEMUTAR LAGU SOUNDTRACK DENGAN ANIMASI & AUTO RESUME MUSIK UTAMA
+    function playCustomSong(songIndex) {
+      const targetAudio = document.getElementById(`audio-song-${songIndex}`);
+      const targetIcon = document.getElementById(`icon-song-${songIndex}`);
+
+      // A. Jika lagu yang diklik sedang berjalan (di-pause manual)
+      if (targetAudio && !targetAudio.paused) {
+        targetAudio.pause();
+        targetIcon.innerText = "▶";
+        targetIcon.classList.remove('playing');
+
+        // Nyalakan kembali musik utama jika video tidak sedang diputar
+        if (music && (!video || video.paused)) {
+          music.play().catch(() => {});
+        }
+        return;
+      }
+
+      // B. Hentikan lagu background awal (myhrt.mp3)
+      if (music && !music.paused) {
+        music.pause();
+      }
+
+      // C. Hentikan video jika sedang berputar
+      if (video && !video.paused) {
+        video.pause();
+      }
+
+      // D. Hentikan lagu soundtrack lainnya di daftar
+      [1, 2, 3].forEach(i => {
+        const audio = document.getElementById(`audio-song-${i}`);
+        const icon = document.getElementById(`icon-song-${i}`);
+        if (audio) {
+          audio.pause();
+          audio.currentTime = 0; // Kembalikan ke awal
+        }
+        if (icon) {
+          icon.innerText = "▶";
+          icon.classList.remove('playing');
+        }
+      });
+
+      // E. Putar lagu pilihan & aktifkan animasi
+      if (targetAudio) {
+        targetAudio.play().then(() => {
+          targetIcon.innerText = "⏸";
+          targetIcon.classList.add('playing');
+        }).catch(err => {
+          console.log("Gagal memutar lagu:", err);
+        });
+
+        // Ketika lagu selesai (auto ended), kembalikan ikon & nyalakan lagu utama lagi
+        targetAudio.onended = function() {
+          targetIcon.innerText = "▶";
+          targetIcon.classList.remove('playing');
+
+          if (music && (!video || video.paused)) {
+            music.play().catch(() => {});
+          }
+        };
+      }
+    }
+
+    // 4. INTERAKSI VIDEO DENGAN LAGU UTAMA
     if (video) {
       video.addEventListener('play', () => {
-        if (music && !music.paused) {
-          music.pause();
-        }
+        // Hentikan lagu utama
+        if (music && !music.paused) music.pause();
+        // Hentikan semua lagu soundtrack
+        [1, 2, 3].forEach(i => {
+          const audio = document.getElementById(`audio-song-${i}`);
+          const icon = document.getElementById(`icon-song-${i}`);
+          if (audio) { audio.pause(); audio.currentTime = 0; }
+          if (icon) { icon.innerText = "▶"; icon.classList.remove('playing'); }
+        });
       });
 
       video.addEventListener('pause', () => {
-        if (music && music.paused) {
-          music.play().catch(() => {});
-        }
+        if (music && music.paused) music.play().catch(() => {});
       });
 
       video.addEventListener('ended', () => {
-        if (music && music.paused) {
-          music.play().catch(() => {});
-        }
+        if (music && music.paused) music.play().catch(() => {});
       });
     }
 
-    // 4. OTOMATIS GENERATE QR CODE
+    // 5. GENERATE QR CODE
     document.addEventListener("DOMContentLoaded", function() {
       const currentUrl = encodeURIComponent(window.location.href);
       const qrImg = document.getElementById('qr-img');
@@ -554,16 +914,16 @@
       window.open(window.location.href, '_blank');
     }
 
-    // 5. FUNGSI INTRO
+    // 6. FUNGSI INTRO
     function startIntro() {
       const intro = document.getElementById('intro-overlay');
       const gameScreen = document.getElementById('game-screen');
 
       if (music) {
         music.play().then(() => {
-          console.log("Lagu berhasil diputar!");
+          console.log("Lagu utama diputar!");
         }).catch((err) => {
-          console.log("Autoplay diblokir browser, dipicu klik berikutnya:", err);
+          console.log("Autoplay diblokir:", err);
         });
       }
 
@@ -574,7 +934,7 @@
       }, 800);
     }
 
-    // 6. LOGIKA GAME TRANSISI
+    // 7. LOGIKA GAME
     function tryGame(btn, isCorrect) {
       if (music && music.paused && (!video || video.paused)) {
         music.play().catch(() => {});
@@ -607,22 +967,59 @@
       } else {
         btn.innerText = "❌";
         status.style.color = "#f87171";
-        status.innerText = "Bukan yang ini.. coba pilih Love yang lain! ❌";
+        status.innerText = "Coba pilih Love yang lain! ❌";
 
-        setTimeout(() => {
-          btn.innerText = "❤️";
-        }, 1000);
+        setTimeout(() => { btn.innerText = "❤️"; }, 1000);
       }
     }
 
-    // 7. FITUR BAGIKAN UNDANGAN
+    // 8. HANDLE PENGIRIMAN PESAN KE EMAIL VIA FORMSPREE
+    const form = document.getElementById('contact-form');
+    const statusText = document.getElementById('form-status');
+    const submitBtn = document.getElementById('submit-btn');
+
+    form.addEventListener('submit', async function(e) {
+      e.preventDefault();
+      const data = new FormData(form);
+      submitBtn.innerText = "Mengirim...";
+      submitBtn.disabled = true;
+
+      try {
+        const response = await fetch(form.action, {
+          method: form.method,
+          body: data,
+          headers: {
+            'Accept': 'application/json'
+          }
+        });
+
+        if (response.ok) {
+          statusText.style.display = 'block';
+          statusText.style.color = '#4ade80';
+          statusText.innerText = 'Pesanmu berhasil terkirim! ❤️';
+          form.reset();
+          submitBtn.innerText = "Kirim Pesan ❤️";
+          submitBtn.disabled = false;
+        } else {
+          throw new Error('Gagal');
+        }
+      } catch (error) {
+        statusText.style.display = 'block';
+        statusText.style.color = '#f87171';
+        statusText.innerText = 'Gagal mengirim pesan. Pastikan koneksi internet stabil!';
+        submitBtn.innerText = "Kirim Pesan ❤️";
+        submitBtn.disabled = false;
+      }
+    });
+
+    // 9. BAGIKAN SPESIAL
     function shareUndangan() {
       const pageUrl = window.location.href;
-      const shareText = `Ada pesan romantis spesial agar kalian tau! Silakan buka link ini:\n${pageUrl}`;
+      const shareText = `Lihat halaman kenangan kita berdua di sini ❤️:\n${pageUrl}`;
 
       if (navigator.share) {
         navigator.share({
-          title: 'Undangan Spesial Untuk Kalian',
+          title: 'Halaman Kenangan Kita Berdua',
           text: shareText,
           url: pageUrl
         }).catch(() => {});
