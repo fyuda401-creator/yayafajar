@@ -267,41 +267,57 @@
       margin-top: 2px;
     }
 
-    /* DESAIN CHAT PERCAKAPAN FAJAR */
+    /* DESAIN CHAT PERCAKAPAN BERDUA (FAJAR & RAISYA) */
     .chat-container {
       display: flex;
       flex-direction: column;
       gap: 12px;
       margin-top: 15px;
-      text-align: left;
     }
 
+    /* Chat umum */
     .chat-bubble {
-      background: rgba(127, 29, 29, 0.4);
-      border: 1px solid rgba(239, 68, 68, 0.4);
-      border-radius: 16px;
-      border-top-left-radius: 4px;
+      max-width: 82%;
       padding: 12px 15px;
+      border-radius: 16px;
       position: relative;
       cursor: pointer;
       transition: transform 0.2s, background 0.3s;
+      text-align: left;
     }
 
     .chat-bubble:hover {
-      background: rgba(185, 28, 28, 0.6);
       transform: translateY(-2px);
     }
 
-    .chat-bubble.featured-song {
-      border: 1px solid #ffcc00;
-      background: rgba(185, 28, 28, 0.6);
-      box-shadow: 0 0 10px rgba(255, 204, 0, 0.3);
+    /* Chat Fajar (Kiri) */
+    .chat-left {
+      align-self: flex-start;
+      background: rgba(127, 29, 29, 0.5);
+      border: 1px solid rgba(239, 68, 68, 0.4);
+      border-top-left-radius: 4px;
+    }
+
+    .chat-left .chat-sender {
+      color: #ffcc00;
+    }
+
+    /* Chat Raisya (Kanan / Lawan Arah) */
+    .chat-right {
+      align-self: flex-end;
+      background: rgba(190, 24, 93, 0.4);
+      border: 1px solid rgba(244, 114, 182, 0.4);
+      border-top-right-radius: 4px;
+    }
+
+    .chat-right .chat-sender {
+      color: #f472b6;
+      text-align: right;
     }
 
     .chat-sender {
       font-size: 11px;
       font-weight: bold;
-      color: #ffcc00;
       margin-bottom: 4px;
       display: flex;
       justify-content: space-between;
@@ -312,6 +328,13 @@
       font-size: 13px;
       color: #ffffff;
       line-height: 1.5;
+    }
+
+    /* Highlight Pesan Musik */
+    .chat-bubble.featured-song {
+      border: 1px solid #ffcc00;
+      background: rgba(185, 28, 28, 0.7);
+      box-shadow: 0 0 10px rgba(255, 204, 0, 0.3);
     }
 
     /* SOUNDTRACK KITA */
@@ -621,62 +644,76 @@
         </div>
       </div>
 
-      <!-- 5. Percakapan Fajar -->
+      <!-- 5. Percakapan Fajar & Raisya (Satu Kolom Chat Berdua) -->
       <div class="card">
-        <h3 style="color: #ffcc00; font-size: 18px; margin-bottom: 5px;">Pesan Dari Fajar 💬</h3>
+        <h3 style="color: #ffcc00; font-size: 18px; margin-bottom: 5px;">Percakapan Kita 💬</h3>
         <p style="font-size: 11px; color: #fca5a5;">(Klik pesan pertama berbingkai emas untuk musik 🎵)</p>
         
         <div class="chat-container">
-          <!-- HANYA KOLOM PERTAMA INI YANG MEMUTAR LAGU ABOUT YOU -->
-          <div class="chat-bubble featured-song" onclick="playAboutYou(event, this)">
-            <div class="chat-sender">Fajar <span>🎵 (Putar Song)</span></div>
+          <!-- FAJAR - Chat 1 (PEMUTAR LAGU ABOUT YOU) -->
+          <div class="chat-bubble chat-left featured-song" onclick="playAboutYou(event, this)">
+            <div class="chat-sender">Fajar <span>🎵</span></div>
             <div class="chat-text">"Bumi luas sekali untungnya kita bertemu"</div>
           </div>
 
-          <!-- KOLOM SISANYA HANYA MENAMPILKAN EFEK EMOTICON MELAYANG -->
-          <div class="chat-bubble" onclick="handlePhotoClick(event, this)">
+          <!-- FAJAR - Chat 2 -->
+          <div class="chat-bubble chat-left" onclick="handlePhotoClick(event, this)">
             <div class="chat-sender">Fajar</div>
             <div class="chat-text">"Di perjalanan yang panjang ini jangan jadi milik siapa siapa dulu ya?"</div>
           </div>
 
-          <div class="chat-bubble" onclick="handlePhotoClick(event, this)">
+          <!-- FAJAR - Chat 3 -->
+          <div class="chat-bubble chat-left" onclick="handlePhotoClick(event, this)">
             <div class="chat-sender">Fajar</div>
             <div class="chat-text">"Bagaimanapun ujungnya, senang bisa mengenalmu"</div>
           </div>
 
-          <div class="chat-bubble" onclick="handlePhotoClick(event, this)">
+          <!-- FAJAR - Chat 4 -->
+          <div class="chat-bubble chat-left" onclick="handlePhotoClick(event, this)">
             <div class="chat-sender">Fajar</div>
             <div class="chat-text">"Sekalinya jatuh cinta, akan ku pastikan akan jatuh yang paling dalam"</div>
           </div>
 
-          <div class="chat-bubble" onclick="handlePhotoClick(event, this)">
+          <!-- FAJAR - Chat 5 -->
+          <div class="chat-bubble chat-left" onclick="handlePhotoClick(event, this)">
             <div class="chat-sender">Fajar</div>
             <div class="chat-text">"Jatuh cinta itu indah, jika cintanya setara"</div>
           </div>
 
-          <div class="chat-bubble" onclick="handlePhotoClick(event, this)">
+          <!-- FAJAR - Chat 6 -->
+          <div class="chat-bubble chat-left" onclick="handlePhotoClick(event, this)">
             <div class="chat-sender">Fajar</div>
             <div class="chat-text">"Dia bernilai 10/10"</div>
           </div>
 
-          <div class="chat-bubble" onclick="handlePhotoClick(event, this)">
+          <!-- FAJAR - Chat 7 -->
+          <div class="chat-bubble chat-left" onclick="handlePhotoClick(event, this)">
             <div class="chat-sender">Fajar</div>
             <div class="chat-text">"Gapapa jalannya susah asal puncaknya kamu"</div>
           </div>
 
-          <div class="chat-bubble" onclick="handlePhotoClick(event, this)">
+          <!-- FAJAR - Chat 8 -->
+          <div class="chat-bubble chat-left" onclick="handlePhotoClick(event, this)">
             <div class="chat-sender">Fajar</div>
             <div class="chat-text">"Jika ada yang lebih indah dari 3726 Mdpl, mungkin itu senyum, tawa, dan apapun tentang mu"</div>
           </div>
 
-          <div class="chat-bubble" onclick="handlePhotoClick(event, this)">
+          <!-- FAJAR - Chat 9 -->
+          <div class="chat-bubble chat-left" onclick="handlePhotoClick(event, this)">
             <div class="chat-sender">Fajar</div>
             <div class="chat-text">"Ternyata episode bahagiaku bertemu orang baik sepertimu"</div>
           </div>
 
-          <div class="chat-bubble" onclick="handlePhotoClick(event, this)">
+          <!-- FAJAR - Chat 10 -->
+          <div class="chat-bubble chat-left" onclick="handlePhotoClick(event, this)">
             <div class="chat-sender">Fajar</div>
             <div class="chat-text">"Apapun yang berkaitan tentang dirinya aku akan selalu menyukainya dia indah dan selamanya akan tetap indah"</div>
+          </div>
+
+          <!-- RAISYA - Chat Balasan (Sisi Kanan / Lawan Arah) -->
+          <div class="chat-bubble chat-right" onclick="handlePhotoClick(event, this)">
+            <div class="chat-sender">Raisya 🌸</div>
+            <div class="chat-text">"Seperti 3726 Mdpl, selalu butuh waktu yang lama untuk mendapatkan sesuatu yang indah"</div>
           </div>
         </div>
       </div>
@@ -835,7 +872,7 @@
       }
     }
 
-    // FUNGSI MEMUTAR LAGU ABOUT YOU HANYA DARI UNTUK KOLOM SPESIAL
+    // FUNGSI MEMUTAR LAGU ABOUT YOU HANYA DARI PESAN FAJAR PERTAMA
     function playAboutYou(event, element) {
       handlePhotoClick(event, element); // Tetap munculkan efek emoticon
 
