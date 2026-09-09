@@ -669,7 +669,7 @@
       <!-- 7. SOUNDTRACK KITA (DENGAN PEMUTAR INTEGRASI) -->
       <div class="card">
         <h3 style="color: #ffcc00; font-size: 18px;">Soundtrack Kita 🎵</h3>
-        <p style="font-size: 11px; color: #fca5a5; margin-top: 3px;">Lagu-lagu yang selalu bikin ingat kamu</p>
+        <p style="font-size: 11px; color: #fca5a5; margin-top: 3px;">Lagu-lagu tentang kita berdua</p>
         
         <div class="playlist-list">
           <!-- Lagu 1 -->
@@ -679,7 +679,7 @@
               <h4>Kita Usahakan Rumah Itu</h4>
               <p>Sal Priadi — Cerita impian dan masa depan berdua</p>
             </div>
-            <audio id="audio-song-1" src="lagu1.mp3" preload="none"></audio>
+            <audio id="audio-song-1" src="rumahitu.mp3" preload="none"></audio>
           </div>
 
           <!-- Lagu 2 -->
@@ -689,7 +689,7 @@
               <h4>Ceritanya Jatuh Cinta</h4>
               <p>Jeje — Momen manis rasa bahagia bersamamu</p>
             </div>
-            <audio id="audio-song-2" src="lagu2.mp3" preload="none"></audio>
+            <audio id="audio-song-2" src="jeje.mp3" preload="none"></audio>
           </div>
 
           <!-- Lagu 3 -->
@@ -699,7 +699,7 @@
               <h4>About You</h4>
               <p>The 1975 — Karena segalanya selalu teringat kamu</p>
             </div>
-            <audio id="audio-song-3" src="lagu3.mp3" preload="none"></audio>
+            <audio id="audio-song-3" src="about.mp3" preload="none"></audio>
           </div>
         </div>
       </div>
@@ -725,7 +725,7 @@
       <!-- 10. KOTAK PESAN DENGAN NOTIFIKASI KE EMAIL (FORMSPREE) -->
       <div class="card">
         <h3 style="color: #ffcc00; font-size: 18px;">Kirim Pesan Rahasia 💌</h3>
-        <p style="font-size: 11px; color: #fca5a5; margin-top: 3px;">Pesan yang diketik di sini akan terkirim langsung ke emailku!</p>
+        <p style="font-size: 11px; color: #fca5a5; margin-top: 3px;">Ketik pesan disini</p>
         
         <div class="letter-box">
           <form id="contact-form" action="https://formspree.io/f/mbgjqape" method="POST">
@@ -996,9 +996,9 @@
         if (response.ok) {
           statusText.style.display = 'block';
           statusText.style.color = '#4ade80';
-          statusText.innerText = 'Pesanmu berhasil terkirim! ❤️';
+          statusText.innerText = 'Pesanmu berhasil terkirim!';
           form.reset();
-          submitBtn.innerText = "Kirim Pesan ❤️";
+          submitBtn.innerText = "Kirim Pesan ";
           submitBtn.disabled = false;
         } else {
           throw new Error('Gagal');
@@ -1007,7 +1007,7 @@
         statusText.style.display = 'block';
         statusText.style.color = '#f87171';
         statusText.innerText = 'Gagal mengirim pesan. Pastikan koneksi internet stabil!';
-        submitBtn.innerText = "Kirim Pesan ❤️";
+        submitBtn.innerText = "Kirim Pesan ";
         submitBtn.disabled = false;
       }
     });
@@ -1015,7 +1015,7 @@
     // 9. BAGIKAN SPESIAL
     function shareUndangan() {
       const pageUrl = window.location.href;
-      const shareText = `Lihat halaman kenangan kita berdua di sini ❤️:\n${pageUrl}`;
+      const shareText = `Lihat halaman kenangan kita berdua di sini:\n${pageUrl}`;
 
       if (navigator.share) {
         navigator.share({
