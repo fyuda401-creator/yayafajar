@@ -267,54 +267,51 @@
       margin-top: 2px;
     }
 
-    /* TIMELINE */
-    .timeline {
-      position: relative;
-      padding-left: 20px;
+    /* DESAIN CHAT PERCAKAPAN FAJAR */
+    .chat-container {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
       margin-top: 15px;
       text-align: left;
     }
 
-    .timeline::before {
-      content: '';
-      position: absolute;
-      left: 5px;
-      top: 5px;
-      bottom: 5px;
-      width: 2px;
-      background: rgba(239, 68, 68, 0.5);
-    }
-
-    .timeline-item {
+    .chat-bubble {
+      background: rgba(127, 29, 29, 0.4);
+      border: 1px solid rgba(239, 68, 68, 0.4);
+      border-radius: 16px;
+      border-top-left-radius: 4px;
+      padding: 12px 15px;
       position: relative;
-      margin-bottom: 20px;
-      padding-left: 15px;
+      cursor: pointer;
+      transition: transform 0.2s, background 0.3s;
     }
 
-    .timeline-item::before {
-      content: '❤️';
-      position: absolute;
-      left: -20px;
-      top: 0;
-      font-size: 12px;
+    .chat-bubble:hover {
+      background: rgba(185, 28, 28, 0.6);
+      transform: translateY(-2px);
     }
 
-    .timeline-date {
+    .chat-bubble.featured-song {
+      border: 1px solid #ffcc00;
+      background: rgba(185, 28, 28, 0.6);
+      box-shadow: 0 0 10px rgba(255, 204, 0, 0.3);
+    }
+
+    .chat-sender {
       font-size: 11px;
+      font-weight: bold;
       color: #ffcc00;
-      font-weight: bold;
+      margin-bottom: 4px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
     }
 
-    .timeline-title {
-      font-size: 14px;
-      font-weight: bold;
-      margin: 2px 0;
-    }
-
-    .timeline-desc {
-      font-size: 12px;
-      color: #fca5a5;
-      line-height: 1.4;
+    .chat-text {
+      font-size: 13px;
+      color: #ffffff;
+      line-height: 1.5;
     }
 
     /* SOUNDTRACK KITA */
@@ -355,7 +352,6 @@
       transform: scale(0.9);
     }
 
-    /* ANIMASI TOMBOL SAAT LAGU SOUNDTRACK BERJALAN */
     .song-icon.playing {
       background: #22c55e !important;
       box-shadow: 0 0 15px rgba(34, 197, 94, 0.8) !important;
@@ -530,6 +526,9 @@
     <source src="myhrt.mp3" type="audio/mpeg">
   </audio>
 
+  <!-- Musik Pemutar Khusus "About You" (The 1975) -->
+  <audio id="about-you-music" src="you.mp3" preload="none"></audio>
+
   <!-- OVERLAY INTRO -->
   <div id="intro-overlay" class="full-overlay" onclick="startIntro()">
     <div class="overlay-flower-big">💖</div>
@@ -622,34 +621,62 @@
         </div>
       </div>
 
-      <!-- 5. Memory Timeline -->
+      <!-- 5. Percakapan Fajar -->
       <div class="card">
-        <h3 style="color: #ffcc00; font-size: 18px; margin-bottom: 5px;">Jejak Kenangan Kita 📍</h3>
-        <p style="font-size: 11px; color: #fca5a5;">Momen-momen penting yang pernah kita lewati</p>
+        <h3 style="color: #ffcc00; font-size: 18px; margin-bottom: 5px;">Pesan Dari Fajar 💬</h3>
+        <p style="font-size: 11px; color: #fca5a5;">(Klik pesan pertama berbingkai emas untuk musik 🎵)</p>
         
-        <div class="timeline">
-          <div class="timeline-item">
-            <div class="timeline-date">Awal Pertemuan</div>
-            <div class="timeline-title">Pertama Kali Bersama</div>
-            <div class="timeline-desc">Momen kecil yang menjadi awal dari cerita panjang ini. Hari di mana semuanya terasa begitu canggung tapi manis.</div>
-          </div>
-          
-          <div class="timeline-item">
-            <div class="timeline-date">Perjalanan Pertama</div>
-            <div class="timeline-title">Jalan-Jalan Berdua</div>
-            <div class="timeline-desc">Saling berbagi cerita sepanjang jalan, tertawa bareng, dan makin mengenal satu sama lain.</div>
+        <div class="chat-container">
+          <!-- HANYA KOLOM PERTAMA INI YANG MEMUTAR LAGU ABOUT YOU -->
+          <div class="chat-bubble featured-song" onclick="playAboutYou(event, this)">
+            <div class="chat-sender">Fajar <span>🎵 (Putar Song)</span></div>
+            <div class="chat-text">"Bumi luas sekali untungnya kita bertemu"</div>
           </div>
 
-          <div class="timeline-item">
-            <div class="timeline-date">Mewalaki Tantangan</div>
-            <div class="timeline-title">Saling Meredam & Berjuang</div>
-            <div class="timeline-desc">Bukan cuma momen manis, kita juga belajar makin dewasa, saling mengerti, dan terus saling menguatkan.</div>
+          <!-- KOLOM SISANYA HANYA MENAMPILKAN EFEK EMOTICON MELAYANG -->
+          <div class="chat-bubble" onclick="handlePhotoClick(event, this)">
+            <div class="chat-sender">Fajar</div>
+            <div class="chat-text">"Di perjalanan yang panjang ini jangan jadi milik siapa siapa dulu ya?"</div>
           </div>
 
-          <div class="timeline-item">
-            <div class="timeline-date">Hari Ini & Seterusnya</div>
-            <div class="timeline-title">Terus Bersama</div>
-            <div class="timeline-desc">Hari ini, besok, dan seterusnya, semoga kita selalu melangkah bergandengan tangan.</div>
+          <div class="chat-bubble" onclick="handlePhotoClick(event, this)">
+            <div class="chat-sender">Fajar</div>
+            <div class="chat-text">"Bagaimanapun ujungnya, senang bisa mengenalmu"</div>
+          </div>
+
+          <div class="chat-bubble" onclick="handlePhotoClick(event, this)">
+            <div class="chat-sender">Fajar</div>
+            <div class="chat-text">"Sekalinya jatuh cinta, akan ku pastikan akan jatuh yang paling dalam"</div>
+          </div>
+
+          <div class="chat-bubble" onclick="handlePhotoClick(event, this)">
+            <div class="chat-sender">Fajar</div>
+            <div class="chat-text">"Jatuh cinta itu indah, jika cintanya setara"</div>
+          </div>
+
+          <div class="chat-bubble" onclick="handlePhotoClick(event, this)">
+            <div class="chat-sender">Fajar</div>
+            <div class="chat-text">"Dia bernilai 10/10"</div>
+          </div>
+
+          <div class="chat-bubble" onclick="handlePhotoClick(event, this)">
+            <div class="chat-sender">Fajar</div>
+            <div class="chat-text">"Gapapa jalannya susah asal puncaknya kamu"</div>
+          </div>
+
+          <div class="chat-bubble" onclick="handlePhotoClick(event, this)">
+            <div class="chat-sender">Fajar</div>
+            <div class="chat-text">"Jika ada yang lebih indah dari 3726 Mdpl, mungkin itu senyum, tawa, dan apapun tentang mu"</div>
+          </div>
+
+          <div class="chat-bubble" onclick="handlePhotoClick(event, this)">
+            <div class="chat-sender">Fajar</div>
+            <div class="chat-text">"Ternyata episode bahagiaku bertemu orang baik sepertimu"</div>
+          </div>
+
+          <div class="chat-bubble" onclick="handlePhotoClick(event, this)">
+            <div class="chat-sender">Fajar</div>
+            <div class="chat-text">"Apapun yang berkaitan tentang dirinya aku akan selalu menyukainya dia indah dan selamanya akan tetap indah"</div>
           </div>
         </div>
       </div>
@@ -666,7 +693,7 @@
         </div>
       </div>
 
-      <!-- 7. SOUNDTRACK KITA (DENGAN PEMUTAR INTEGRASI) -->
+      <!-- 7. SOUNDTRACK KITA -->
       <div class="card">
         <h3 style="color: #ffcc00; font-size: 18px;">Soundtrack Kita 🎵</h3>
         <p style="font-size: 11px; color: #fca5a5; margin-top: 3px;">Lagu-lagu tentang kita berdua</p>
@@ -690,16 +717,6 @@
               <p>Jeje — Momen manis rasa bahagia bersamamu</p>
             </div>
             <audio id="audio-song-2" src="jeje.mp3" preload="none"></audio>
-          </div>
-
-          <!-- Lagu 3 -->
-          <div class="song-card">
-            <div class="song-icon" onclick="playCustomSong(3)" id="icon-song-3">▶</div>
-            <div class="song-info">
-              <h4>About You</h4>
-              <p>The 1975 — Karena segalanya selalu teringat kamu</p>
-            </div>
-            <audio id="audio-song-3" src="you.mp3" preload="none"></audio>
           </div>
         </div>
       </div>
@@ -761,6 +778,7 @@
   <script>
     const music = document.getElementById('bg-music');
     const video = document.getElementById('my-video');
+    const aboutYouSong = document.getElementById('about-you-music');
 
     // 1. ANIMASI BACKGROUND LOVE BERGERAK
     function initBackgroundHearts() {
@@ -782,9 +800,11 @@
     }
     initBackgroundHearts();
 
-    // 2. INTERAKSI FOTO
+    // 2. INTERAKSI EFEK EMOJI MELAYANG & ZOOM FOTO
     function handlePhotoClick(event, element) {
-      element.classList.toggle('zoomed');
+      if (element.classList.contains('interactive-photo')) {
+        element.classList.toggle('zoomed');
+      }
 
       const x = event.clientX || (event.touches && event.touches[0].clientX);
       const y = event.clientY || (event.touches && event.touches[0].clientY);
@@ -815,41 +835,83 @@
       }
     }
 
-    // 3. FUNGSI PEMUTAR LAGU SOUNDTRACK DENGAN ANIMASI & AUTO RESUME MUSIK UTAMA
-    function playCustomSong(songIndex) {
-      const targetAudio = document.getElementById(`audio-song-${songIndex}`);
-      const targetIcon = document.getElementById(`icon-song-${songIndex}`);
+    // FUNGSI MEMUTAR LAGU ABOUT YOU HANYA DARI UNTUK KOLOM SPESIAL
+    function playAboutYou(event, element) {
+      handlePhotoClick(event, element); // Tetap munculkan efek emoticon
 
-      // A. Jika lagu yang diklik sedang berjalan (di-pause manual)
-      if (targetAudio && !targetAudio.paused) {
-        targetAudio.pause();
-        targetIcon.innerText = "▶";
-        targetIcon.classList.remove('playing');
-
-        // Nyalakan kembali musik utama jika video tidak sedang diputar
+      // Jika lagu sedang diputar, lakukan toggle pause
+      if (aboutYouSong && !aboutYouSong.paused) {
+        aboutYouSong.pause();
         if (music && (!video || video.paused)) {
           music.play().catch(() => {});
         }
         return;
       }
 
-      // B. Hentikan lagu background awal (myhrt.mp3)
+      // Hentikan musik utama
       if (music && !music.paused) {
         music.pause();
       }
 
-      // C. Hentikan video jika sedang berputar
+      // Hentikan video jika sedang berputar
       if (video && !video.paused) {
         video.pause();
       }
 
-      // D. Hentikan lagu soundtrack lainnya di daftar
-      [1, 2, 3].forEach(i => {
+      // Hentikan soundtrack lain
+      [1, 2].forEach(i => {
+        const audio = document.getElementById(`audio-song-${i}`);
+        const icon = document.getElementById(`icon-song-${i}`);
+        if (audio) { audio.pause(); audio.currentTime = 0; }
+        if (icon) { icon.innerText = "▶"; icon.classList.remove('playing'); }
+      });
+
+      // Putar lagu About You
+      if (aboutYouSong) {
+        aboutYouSong.play().catch(err => console.log("Gagal memutar About You:", err));
+        
+        aboutYouSong.onended = function() {
+          if (music && (!video || video.paused)) {
+            music.play().catch(() => {});
+          }
+        };
+      }
+    }
+
+    // 3. FUNGSI PEMUTAR LAGU SOUNDTRACK UTAMA
+    function playCustomSong(songIndex) {
+      const targetAudio = document.getElementById(`audio-song-${songIndex}`);
+      const targetIcon = document.getElementById(`icon-song-${songIndex}`);
+
+      if (aboutYouSong && !aboutYouSong.paused) {
+        aboutYouSong.pause();
+      }
+
+      if (targetAudio && !targetAudio.paused) {
+        targetAudio.pause();
+        targetIcon.innerText = "▶";
+        targetIcon.classList.remove('playing');
+
+        if (music && (!video || video.paused)) {
+          music.play().catch(() => {});
+        }
+        return;
+      }
+
+      if (music && !music.paused) {
+        music.pause();
+      }
+
+      if (video && !video.paused) {
+        video.pause();
+      }
+
+      [1, 2].forEach(i => {
         const audio = document.getElementById(`audio-song-${i}`);
         const icon = document.getElementById(`icon-song-${i}`);
         if (audio) {
           audio.pause();
-          audio.currentTime = 0; // Kembalikan ke awal
+          audio.currentTime = 0;
         }
         if (icon) {
           icon.innerText = "▶";
@@ -857,7 +919,6 @@
         }
       });
 
-      // E. Putar lagu pilihan & aktifkan animasi
       if (targetAudio) {
         targetAudio.play().then(() => {
           targetIcon.innerText = "⏸";
@@ -866,7 +927,6 @@
           console.log("Gagal memutar lagu:", err);
         });
 
-        // Ketika lagu selesai (auto ended), kembalikan ikon & nyalakan lagu utama lagi
         targetAudio.onended = function() {
           targetIcon.innerText = "▶";
           targetIcon.classList.remove('playing');
@@ -881,10 +941,9 @@
     // 4. INTERAKSI VIDEO DENGAN LAGU UTAMA
     if (video) {
       video.addEventListener('play', () => {
-        // Hentikan lagu utama
         if (music && !music.paused) music.pause();
-        // Hentikan semua lagu soundtrack
-        [1, 2, 3].forEach(i => {
+        if (aboutYouSong && !aboutYouSong.paused) aboutYouSong.pause();
+        [1, 2].forEach(i => {
           const audio = document.getElementById(`audio-song-${i}`);
           const icon = document.getElementById(`icon-song-${i}`);
           if (audio) { audio.pause(); audio.currentTime = 0; }
@@ -893,11 +952,11 @@
       });
 
       video.addEventListener('pause', () => {
-        if (music && music.paused) music.play().catch(() => {});
+        if (music && music.paused && (!aboutYouSong || aboutYouSong.paused)) music.play().catch(() => {});
       });
 
       video.addEventListener('ended', () => {
-        if (music && music.paused) music.play().catch(() => {});
+        if (music && music.paused && (!aboutYouSong || aboutYouSong.paused)) music.play().catch(() => {});
       });
     }
 
@@ -936,7 +995,7 @@
 
     // 7. LOGIKA GAME
     function tryGame(btn, isCorrect) {
-      if (music && music.paused && (!video || video.paused)) {
+      if (music && music.paused && (!video || video.paused) && (!aboutYouSong || aboutYouSong.paused)) {
         music.play().catch(() => {});
       }
 
@@ -998,7 +1057,7 @@
           statusText.style.color = '#4ade80';
           statusText.innerText = 'Pesanmu berhasil terkirim!';
           form.reset();
-          submitBtn.innerText = "Kirim Pesan ";
+          submitBtn.innerText = "Kirim Pesan ❤️";
           submitBtn.disabled = false;
         } else {
           throw new Error('Gagal');
@@ -1007,7 +1066,7 @@
         statusText.style.display = 'block';
         statusText.style.color = '#f87171';
         statusText.innerText = 'Gagal mengirim pesan. Pastikan koneksi internet stabil!';
-        submitBtn.innerText = "Kirim Pesan ";
+        submitBtn.innerText = "Kirim Pesan ❤️";
         submitBtn.disabled = false;
       }
     });
