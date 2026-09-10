@@ -282,7 +282,7 @@
       border-radius: 16px;
       position: relative;
       cursor: pointer;
-      transition: transform 0.2s, background 0.3s;
+      transition: transform 0.2s, background 0.3s, opacity 0.5s ease;
       text-align: left;
     }
 
@@ -333,8 +333,34 @@
     /* Highlight Pesan Musik */
     .chat-bubble.featured-song {
       border: 1px solid #ffcc00;
-      background: rgba(185, 28, 28, 0.7);
-      box-shadow: 0 0 10px rgba(255, 204, 0, 0.3);
+      background: rgba(185, 28, 28, 0.85);
+      box-shadow: 0 0 15px rgba(255, 204, 0, 0.5);
+      animation: pulseTrigger 1.5s infinite;
+    }
+
+    @keyframes pulseTrigger {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.02); }
+      100% { transform: scale(1); }
+    }
+
+    /* PEMBERIAN EFEK TERSEMBUNYI UNTUK PESAN */
+    .hidden-chat {
+      display: none;
+      opacity: 0;
+      transform: translateY(15px);
+    }
+
+    .hidden-chat.show-chat {
+      display: block;
+      animation: popUpChat 0.5s forwards ease-out;
+    }
+
+    @keyframes popUpChat {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
 
     /* SOUNDTRACK KITA */
@@ -644,74 +670,75 @@
         </div>
       </div>
 
-      <!-- 5. Percakapan Fajar & Raisya (Satu Kolom Chat Berdua) -->
+      <!-- 5. Percakapan Fajar & Raisya -->
       <div class="card">
         <h3 style="color: #ffcc00; font-size: 18px; margin-bottom: 5px;">Percakapan Kita 💬</h3>
-        <p style="font-size: 11px; color: #fca5a5;">(Klik pesan pertama berbingkai emas untuk musik 🎵)</p>
+        <p id="chat-instruction" style="font-size: 11px; color: #ffcc00; margin-bottom: 10px; font-weight: bold;">👉 Klik pesan pertama di bawah untuk membuka semua chat & memutar lagu! 🎵</p>
         
         <div class="chat-container">
-          <!-- FAJAR - Chat 1 (PEMUTAR LAGU ABOUT YOU) -->
-          <div class="chat-bubble chat-left featured-song" onclick="playAboutYou(event, this)">
-            <div class="chat-sender">Fajar <span>🎵</span></div>
+          <!-- FAJAR - Chat 1 (PEMUTAR & PEMBUKA CHAT) -->
+          <div class="chat-bubble chat-left featured-song" id="trigger-chat" onclick="revealAllChatsAndPlay(event, this)">
+            <div class="chat-sender">Fajar <span>🎵 ✨</span></div>
             <div class="chat-text">"Bumi luas sekali untungnya kita bertemu"</div>
           </div>
 
+          <!-- PESAN TERSEMBUNYI (MUNCUL BERURUTAN SETELAH DIKLIK) -->
           <!-- FAJAR - Chat 2 -->
-          <div class="chat-bubble chat-left" onclick="handlePhotoClick(event, this)">
+          <div class="chat-bubble chat-left hidden-chat" onclick="handlePhotoClick(event, this)">
             <div class="chat-sender">Fajar</div>
             <div class="chat-text">"Di perjalanan yang panjang ini jangan jadi milik siapa siapa dulu ya?"</div>
           </div>
 
           <!-- FAJAR - Chat 3 -->
-          <div class="chat-bubble chat-left" onclick="handlePhotoClick(event, this)">
+          <div class="chat-bubble chat-left hidden-chat" onclick="handlePhotoClick(event, this)">
             <div class="chat-sender">Fajar</div>
             <div class="chat-text">"Bagaimanapun ujungnya, senang bisa mengenalmu"</div>
           </div>
 
           <!-- FAJAR - Chat 4 -->
-          <div class="chat-bubble chat-left" onclick="handlePhotoClick(event, this)">
+          <div class="chat-bubble chat-left hidden-chat" onclick="handlePhotoClick(event, this)">
             <div class="chat-sender">Fajar</div>
             <div class="chat-text">"Sekalinya jatuh cinta, akan ku pastikan akan jatuh yang paling dalam"</div>
           </div>
 
           <!-- FAJAR - Chat 5 -->
-          <div class="chat-bubble chat-left" onclick="handlePhotoClick(event, this)">
+          <div class="chat-bubble chat-left hidden-chat" onclick="handlePhotoClick(event, this)">
             <div class="chat-sender">Fajar</div>
             <div class="chat-text">"Jatuh cinta itu indah, jika cintanya setara"</div>
           </div>
 
           <!-- FAJAR - Chat 6 -->
-          <div class="chat-bubble chat-left" onclick="handlePhotoClick(event, this)">
+          <div class="chat-bubble chat-left hidden-chat" onclick="handlePhotoClick(event, this)">
             <div class="chat-sender">Fajar</div>
             <div class="chat-text">"Dia bernilai 10/10"</div>
           </div>
 
           <!-- FAJAR - Chat 7 -->
-          <div class="chat-bubble chat-left" onclick="handlePhotoClick(event, this)">
+          <div class="chat-bubble chat-left hidden-chat" onclick="handlePhotoClick(event, this)">
             <div class="chat-sender">Fajar</div>
             <div class="chat-text">"Gapapa jalannya susah asal puncaknya kamu"</div>
           </div>
 
           <!-- FAJAR - Chat 8 -->
-          <div class="chat-bubble chat-left" onclick="handlePhotoClick(event, this)">
+          <div class="chat-bubble chat-left hidden-chat" onclick="handlePhotoClick(event, this)">
             <div class="chat-sender">Fajar</div>
             <div class="chat-text">"Jika ada yang lebih indah dari 3726 Mdpl, mungkin itu senyum, tawa, dan apapun tentang mu"</div>
           </div>
 
           <!-- FAJAR - Chat 9 -->
-          <div class="chat-bubble chat-left" onclick="handlePhotoClick(event, this)">
+          <div class="chat-bubble chat-left hidden-chat" onclick="handlePhotoClick(event, this)">
             <div class="chat-sender">Fajar</div>
             <div class="chat-text">"Ternyata episode bahagiaku bertemu orang baik sepertimu"</div>
           </div>
 
           <!-- FAJAR - Chat 10 -->
-          <div class="chat-bubble chat-left" onclick="handlePhotoClick(event, this)">
+          <div class="chat-bubble chat-left hidden-chat" onclick="handlePhotoClick(event, this)">
             <div class="chat-sender">Fajar</div>
             <div class="chat-text">"Apapun yang berkaitan tentang dirinya aku akan selalu menyukainya dia indah dan selamanya akan tetap indah"</div>
           </div>
 
           <!-- RAISYA - Chat Balasan (Sisi Kanan / Lawan Arah) -->
-          <div class="chat-bubble chat-right" onclick="handlePhotoClick(event, this)">
+          <div class="chat-bubble chat-right hidden-chat" onclick="handlePhotoClick(event, this)">
             <div class="chat-sender">Raisya 🌸</div>
             <div class="chat-text">"Seperti 3726 Mdpl, selalu butuh waktu yang lama untuk mendapatkan sesuatu yang indah"</div>
           </div>
@@ -816,6 +843,7 @@
     const music = document.getElementById('bg-music');
     const video = document.getElementById('my-video');
     const aboutYouSong = document.getElementById('about-you-music');
+    let isChatRevealed = false;
 
     // 1. ANIMASI BACKGROUND LOVE BERGERAK
     function initBackgroundHearts() {
@@ -872,30 +900,26 @@
       }
     }
 
-    // FUNGSI MEMUTAR LAGU ABOUT YOU HANYA DARI PESAN FAJAR PERTAMA
-    function playAboutYou(event, element) {
-      handlePhotoClick(event, element); // Tetap munculkan efek emoticon
+    // FUNGSI UTAMA: MENGUNGKAP SEMUA PESAN KEBOWA SAMA PEMUTAR LAGU
+    function revealAllChatsAndPlay(event, element) {
+      handlePhotoClick(event, element); // Munculkan Efek Bunga/Heart
 
-      // Jika lagu sedang diputar, lakukan toggle pause
-      if (aboutYouSong && !aboutYouSong.paused) {
-        aboutYouSong.pause();
-        if (music && (!video || video.paused)) {
-          music.play().catch(() => {});
+      // Jika percakapan sudah dibuka sebelumnya, tombol ini berfungsi sebagai Toggle Pause/Play Lagu
+      if (isChatRevealed) {
+        if (aboutYouSong && !aboutYouSong.paused) {
+          aboutYouSong.pause();
+          if (music && (!video || video.paused)) music.play().catch(() => {});
+        } else {
+          if (music && !music.paused) music.pause();
+          if (aboutYouSong) aboutYouSong.play().catch(() => {});
         }
         return;
       }
 
-      // Hentikan musik utama
-      if (music && !music.paused) {
-        music.pause();
-      }
-
-      // Hentikan video jika sedang berputar
-      if (video && !video.paused) {
-        video.pause();
-      }
-
-      // Hentikan soundtrack lain
+      // 1. Jalankan Pemutaran Lagu "About You"
+      if (music && !music.paused) music.pause();
+      if (video && !video.paused) video.pause();
+      
       [1, 2].forEach(i => {
         const audio = document.getElementById(`audio-song-${i}`);
         const icon = document.getElementById(`icon-song-${i}`);
@@ -903,16 +927,32 @@
         if (icon) { icon.innerText = "▶"; icon.classList.remove('playing'); }
       });
 
-      // Putar lagu About You
       if (aboutYouSong) {
         aboutYouSong.play().catch(err => console.log("Gagal memutar About You:", err));
-        
         aboutYouSong.onended = function() {
-          if (music && (!video || video.paused)) {
-            music.play().catch(() => {});
-          }
+          if (music && (!video || video.paused)) music.play().catch(() => {});
         };
       }
+
+      // 2. Ubah Instruksi Teks Pembuka
+      const chatInstr = document.getElementById('chat-instruction');
+      if (chatInstr) {
+        chatInstr.innerText = "🎵 Memutar: About You (The 1975)";
+        chatInstr.style.color = "#4ade80";
+      }
+
+      // Matikan animasi pulse tombol setelah diklik
+      element.style.animation = "none";
+
+      // 3. Tampilkan Sisa Chat Satu Per Satu (Muncul Bertahap / Cascading)
+      const hiddenChats = document.querySelectorAll('.hidden-chat');
+      isChatRevealed = true;
+
+      hiddenChats.forEach((chat, index) => {
+        setTimeout(() => {
+          chat.classList.add('show-chat');
+        }, (index + 1) * 350); // Jeda 0.35 detik tiap gelembung pesan
+      });
     }
 
     // 3. FUNGSI PEMUTAR LAGU SOUNDTRACK UTAMA
