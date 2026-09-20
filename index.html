@@ -793,15 +793,38 @@
         </div>
       </div>
 
-      <!-- 9. Video Momen -->
       <div class="card">
-        <h3 style="color: #ffcc00; font-size: 18px; margin-bottom: 10px;"></h3>
-        <div class="video-wrapper">
-          <video id="my-video" controls poster="img/thumbnail-video.jpg">
-            <source src="video.mp4" type="video/mp4"> <source src="1129.mp4" type="video/mp4">
-          </video>
-        </div>
-      </div>
+  <h3 style="color: #ffcc00; font-size: 18px; margin-bottom: 10px;">Video Kenangan 🎬</h3>
+  <div class="video-wrapper">
+    <!-- src awal diisi video pertama -->
+    <video id="my-video" controls poster="img/thumbnail-video.jpg" src="video.mp4">
+      Browser Anda tidak mendukung pemutar video.
+    </video>
+  </div>
+</div>
+
+<script>
+  // Array yang berisi daftar video secara berurutan
+  const playlist = ["video.mp4", "1129.mp4"];
+  let currentVideoIndex = 0;
+
+  const videoPlayer = document.getElementById('my-video');
+
+  // Event ketika video yang sedang diputar selesai
+  videoPlayer.addEventListener('ended', function () {
+    currentVideoIndex++; // Pindah ke indeks video berikutnya
+
+    // Jika masih ada video dalam playlist
+    if (currentVideoIndex < playlist.length) {
+      videoPlayer.src = playlist[currentVideoIndex]; // Ganti sumber video
+      videoPlayer.play(); // Putar video berikutnya secara otomatis
+    } else {
+      // (Opsional) Jika ingin kembali memutar dari video pertama setelah semua selesai:
+      // currentVideoIndex = 0;
+      // videoPlayer.src = playlist[currentVideoIndex];
+    }
+  });
+</script>
 
       <!-- 10. KOTAK PESAN DENGAN NOTIFIKASI KE EMAIL (FORMSPREE) -->
       <div class="card">
